@@ -91,9 +91,9 @@ export const Hero = () => {
                 Follow:
               </span>
               {[
-                {icon: FaGithub, href:"#"},
-                {icon: FaLinkedin, href:"#"},
-                {icon: SiLeetcode, href:"#"},
+                {icon: FaGithub, href:"https://github.com/Prince-mnpp"},
+                {icon: FaLinkedin, href:"https://www.linkedin.com/in/prince-rajput-191b23332/"},
+                {icon: SiLeetcode, href:"https://leetcode.com/u/Prince_rajput_33/"},
               ].map((social, idx) => (
                 <a 
                   href={social.href}
