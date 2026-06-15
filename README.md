@@ -7,7 +7,7 @@ A modern and fully responsive personal portfolio website built using React and T
 
 ## 🌐 Live Demo
 
-🔗 https://your-portfolio-link.com
+🔗 https://prince-rajput-portfolio.vercel.app/
 
 ---
 
@@ -61,7 +61,7 @@ src/
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/portfolio.git
+git clone https://github.com/Prince-mnpp/react-dev-portfolio
 ```
 
 Move into project directory:
