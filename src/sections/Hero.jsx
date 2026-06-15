@@ -76,13 +76,19 @@ export const Hero = () => {
             </div>
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 animate-fade-in animation-delay-300">
-              <Button size="lg">
-                Contact me <ArrowRight className="w-5 h-5"/>
-              </Button>
-              <AnimateBorderButton>
-                <Download className="w-5 h-5"/>
-                Download CV
-              </AnimateBorderButton>
+              
+                <Button size="lg" onClick={() => { document .getElementById("contacts") ?.scrollIntoView({ behavior: "smooth" }); }}>
+                  Contact me <ArrowRight className="w-5 h-5"/>
+                </Button>
+              
+              
+              <a href="/resume.pdf" download="resume.pdf">
+                <AnimateBorderButton>
+                  <Download className="w-5 h-5"/>
+                  Download CV
+                </AnimateBorderButton>
+              </a>
+              
             </div>
             {/* social links */}
 

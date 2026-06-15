@@ -60,13 +60,28 @@ export const Contacts = () => {
 
     try {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-      if (!serviceId || !templateId || !publicKey) {
-        throw new Error("Missing EmailJS environment variables");
+      const templateId =
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+
+      const autoReplyTemplateId =
+        import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID;
+
+      const publicKey =
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (
+        !serviceId ||
+        !templateId ||
+        !autoReplyTemplateId ||
+        !publicKey
+      ) {
+        throw new Error(
+          "Missing EmailJS environment variables"
+        );
       }
 
+      // Send message to you
       await emailjs.send(
         serviceId,
         templateId,
@@ -79,9 +94,23 @@ export const Contacts = () => {
         publicKey
       );
 
+      // Send auto reply to user
+      await emailjs.send(
+        serviceId,
+        autoReplyTemplateId,
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        publicKey
+      );
+
       setSubmitStatus({
         type: "success",
-        message: "Message sent successfully! I'll get back to you soon.",
+        message:
+          "Message sent successfully! I'll get back to you soon.",
       });
 
       setFormData({
@@ -96,7 +125,8 @@ export const Contacts = () => {
       setSubmitStatus({
         type: "error",
         message:
-          err?.text || "Failed to send message. Please try again later.",
+          err?.text ||
+          "Failed to send message. Please try again later.",
       });
     } finally {
       setIsLoading(false);
@@ -104,10 +134,14 @@ export const Contacts = () => {
   };
 
   return (
-    <section id="contact" className="py-32 relative overflow-hidden">
+    <section
+      id="contacts"
+      className="py-32 relative overflow-hidden"
+    >
       {/* Background Blur */}
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
       </div>
 
@@ -133,7 +167,10 @@ export const Contacts = () => {
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Form */}
           <div className="glass p-8 rounded-3xl border border-primary/30">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
               {/* Name */}
               <div>
                 <label
@@ -266,7 +303,9 @@ export const Contacts = () => {
                     <AlertCircle className="w-5 h-5 shrink-0" />
                   )}
 
-                  <p className="text-sm">{submitStatus.message}</p>
+                  <p className="text-sm">
+                    {submitStatus.message}
+                  </p>
                 </div>
               )}
             </form>
@@ -295,7 +334,9 @@ export const Contacts = () => {
                         {item.label}
                       </div>
 
-                      <div className="font-medium">{item.value}</div>
+                      <div className="font-medium">
+                        {item.value}
+                      </div>
                     </div>
                   </a>
                 ))}

@@ -6,7 +6,7 @@ const navLinks = [
   { href: "#about", label: "About" },
   { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
-  { href: "#testimonials", label: "Testimonials" },
+  // { href: "#testimonials", label: "Testimonials" },
 ];
 
 export const Navbar = () => {
@@ -42,7 +42,7 @@ export const Navbar = () => {
 
         {/* cta btn */}
         <div>
-          <Button size="sm" className="hidden md:block">Contact Me</Button>
+          <Button size="sm" className="hidden md:block" onClick={() => { document .getElementById("contacts") ?.scrollIntoView({ behavior: "smooth" }); }}>Contact Me</Button>
         </div>
 
         {/* Mobile Menu Button */}
